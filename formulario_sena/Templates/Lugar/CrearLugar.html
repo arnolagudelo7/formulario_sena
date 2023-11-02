@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lugar Evento</title>
+</head>
+<body>
+    
+    <form action="" method="post">
+        
+        {% csrf_token%}
+
+        <label for="">Ingrese el lugar donde sera el evento:</label>
+        <input type="text" name="LugarEvento" id="LugarEvento">
+
+        <button type="submit">Registrar</button>
+    </form>
+
+</body>
+</html>

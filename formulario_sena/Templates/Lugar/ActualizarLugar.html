@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar lugar Evento</title>
+</head>
+<body>
+    <h1>Actualizar lugar evento</h1>
+    <form action="{% url 'actualizar_objeto' objeto.id %}" method="post">
+        
+        {% csrf_token%}
+
+        <label for="">Actualiza el lugar donde sera el evento:</label>
+        <input type="text" name="LugarEvento" id="LugarEvento" value="{{ lugar.LugarEvento }}">
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+</body>
+</html>
