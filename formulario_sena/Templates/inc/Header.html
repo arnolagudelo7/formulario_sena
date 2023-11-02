@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+               
+                {% if user.is_authenticated %}
+
+                <li>
+                    <a href="">Gregar lugar de evento</a>
+                </li>
+
+                <li>
+                    <a href="">Ver registros</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesion</a>
+                </li>
+
+                <li>
+                    <a href="#">@{{ user.username }}</a>
+                </li>
+
+                {% else %}
+                <li>
+                    <a href="{% url 'Registro' %}">Registro</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'login' %}">Ingreso</a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
