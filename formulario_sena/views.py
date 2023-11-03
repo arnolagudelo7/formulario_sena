@@ -47,31 +47,31 @@ def LugarEventoCrear(request):
     
 def VerLugar(request):
     lugar = Lugar.objects.all()
+    
     return render(request, "Lugar/VerLugar.html", {'lugar':lugar})
 
-def ActualizarLugar(request, Id_Lugar):
-    lugar = get_object_or_404(Lugar, Id_Lugar=Id_Lugar)
-    
-    if request.method == 'POST':
-        LugarEvento = request.POST['LugarEvento']
 
-        # Obtener otros campos del formulario según sea necesario
-        
-        # Actualizar los campos del objeto lugar
-        lugar.LugarEvento = LugarEvento
-
-        # Actualiza otros campos del modelo Lugar según sea necesario
-        lugar.save()
-        
-        # Redirigir a una página de éxito o renderizar un template de éxito
-        return redirect("/")
-    
-    # Si la solicitud no es POST, mostrar el formulario para editar el lugar
+def EdicionLugar(request, Id_Lugar):
+    lugar = Lugar.objects.get(Id_Lugar=Id_Lugar)
     context = {
-        'lugar': lugar
+        'lugar':lugar
     }
     return render(request, "Lugar/ActualizarLugar.html", context)
+
+def EdtitarLugar(request):
+    id = int(request.POST['Id'])
+    LugarEvento = request.POST['LugarEvento']
     
+    lugar = Lugar.objects.get(Id_Lugar = id)
+    lugar.LugarEvento = LugarEvento
+    lugar.save()
+    
+    return redirect('/VerLugar/')
+
+def EliminarLugar(request, Id_Lugar):
+    lugar = Lugar.objects.get(Id_Lugar=Id_Lugar)
+    lugar.delete()
+    return redirect('/VerLugar/')
     
 
 #endregion

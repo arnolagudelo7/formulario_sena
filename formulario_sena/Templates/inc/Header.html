@@ -14,7 +14,11 @@
                 {% if user.is_authenticated %}
 
                 <li>
-                    <a href="">Gregar lugar de evento</a>
+                    <a href="#">Lugar de evento</a>
+                        <ul>
+                            <li><a href="{% url 'LugarEventoCrear' %}">Registrar un nuevo lugar</a></li>
+                            <li><a href="{% url 'VerLugar' %}">Ver lugares disponibles</a></li>
+                        </ul>
                 </li>
 
                 <li>

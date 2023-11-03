@@ -1,3 +1,4 @@
+{% include 'inc/Header.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,12 @@
 </head>
 <body>
     <h1>Actualizar lugar evento</h1>
-    <form action="{% url 'actualizar_objeto' objeto.id %}" method="post">
+    
+    
+    <form action="/EditarLugar/" method="post">
         
         {% csrf_token%}
-
+        <input type="hidden" name="Id" value="{{ lugar.Id_Lugar }}">
         <label for="">Actualiza el lugar donde sera el evento:</label>
         <input type="text" name="LugarEvento" id="LugarEvento" value="{{ lugar.LugarEvento }}">
 
