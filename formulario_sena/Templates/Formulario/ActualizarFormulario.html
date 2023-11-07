@@ -1,0 +1,87 @@
+{% include 'inc/Header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar asistencia</title>
+</head>
+<body>
+    <h1>Actualizar informacion de asistencia</h1>
+    <form action="/EditarFormulario/" method="post">
+
+        {% csrf_token %}
+
+        <input type="hidden" name="Id" value="{{ formulario.Id_Formulario }}">
+
+        <label for="LugarEvento">Actualize el lugar donde se desarrollara el evento:</label>
+        <select name="LugarEvento_Id" id="LugarEvento">
+            <option value="" {% if not formulario.LugarEvento_Id %}selected{% endif %}>Seleccionar</option>
+            {% for L in lugar %}
+                <option value="{{ L.Id_Lugar }}" {% if formulario.LugarEvento_Id_id == L.Id_Lugar %}selected{% endif %}>{{ L.LugarEvento }}</option>
+            {% endfor %}
+        </select>     
+        
+
+        <label for="NombreCompleto">Actualize sus nombres y apellidos:</label>
+        <input type="text" name="NombreCompleto" id="NombreCompleto" value="{{ formulario.NombreCompleto }}">
+
+        <label for="NumeroDocumento">Actualize su numero de documento:</label>
+        <input type="text" name="NumeroDocumento" id="NumeroDocumento" value="{{ formulario.NumeroDocumento }}">
+
+        <label for="Planta">Actualize a donde pertenezca:</label>
+        <div>
+            <select name="Planta" id="Planta">
+                <option value="" {% if not formulario.Planta %}selected{% endif %}>Seleccionar</option>
+                <option value="planta" {% if formulario.Planta == "planta" %}selected{% endif %}>Planta</option>
+                <option value="contratista" {% if formulario.Planta == "contratista" %}selected{% endif %}>Contratista</option>
+                <option value="Aprendiz" {% if formulario.Planta == "Aprendiz" %}selected{% endif %}>Aprendiz</option>
+                <option value="other" {% if formulario.Planta == "other" %}selected{% endif %}>Otro</option>
+            </select>
+            
+        </div>
+
+        <label for="Dependencia">Actualize la dependecia u empresa a la que pertenezca:</label>
+        <input type="text" name="Dependencia" id="Dependencia" value="{{ formulario.Dependencia }}">
+
+        <label for="Correo">Actualize su correo electronico:</label>
+        <input type="text" name="Correo" id="Correo" value="{{ formulario.Correo }}">
+
+        <label for="Telefono">Actualize su telefono | Ext.sena</label>
+        <input type="text" name="Telefono" id="Telefono" value="{{ formulario.Telefono }}">
+
+        <label for="Autorizacion">Actualize si autoriza la grabacion del evento:</label>
+        <select name="Autorizacion" id="Autorizacion">
+            <option value="" {% if formulario.Autorizacion == "" %}selected{% endif %}>Elija una opcion</option>
+            <option value="Si" {% if formulario.Autorizacion == "Si" %}selected{% endif %}>Si</option>
+            <option value="No" {% if formulario.Autorizacion == "No" %}selected{% endif %}>No</option>
+        </select>
+
+        <button type="submit">Actualizar</button>
+
+    </form>
+
+    <script>
+        const dependencia = document.querySelector("#Planta")
+        const toggleInput = "other"
+        const dependencyName = "Planta"
+        const dependencyInput = `<input type='text' placeholder='¿Cual?' name='${dependencyName}' id='Otro'/>`
+        let isSet = false
+
+        dependencia?.addEventListener("change", event => {
+            const {target} = event
+            if (target.value === toggleInput && !isSet) {
+                target.closest("div").insertAdjacentHTML("beforeend", dependencyInput)
+                target.closest("select").name = ""
+                isSet = true
+            }
+            else if (isSet) {
+                target?.closest("div").querySelector("input").remove()
+                target.closest("select").name = dependencyName
+                isSet = false
+            }
+
+        })
+    </script>
+</body>
+</html>

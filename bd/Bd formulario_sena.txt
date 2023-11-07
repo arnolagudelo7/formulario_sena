@@ -1,0 +1,19 @@
+CREATE TABLE Tbl_Lugar (
+Id_Lugar int(11) AUTO_INCREMENT PRIMARY KEY,
+LugarEvento varchar(100) NOT NULL,
+FechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Tbl_Formulario (
+Id_Formulario int(11) AUTO_INCREMENT PRIMARY KEY,
+NombreCompleto varchar(100) NOT NULL,
+NumeroDocumento varchar(20) NOT NULL,
+Planta varchar(100) NOT NULL,
+Dependencia varchar(100) NOT NULL,
+Correo varchar(100) NOT NULL,
+Telefono varchar(20) NOT NULL,
+Autorizacion varchar(10) NOT NULL,
+LugarEvento_Id int(11) NOT NULL,
+FOREIGN KEY (LugarEvento_Id) REFERENCES Tbl_Lugar(Id_Lugar),
+FechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

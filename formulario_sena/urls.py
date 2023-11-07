@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from formulario_sena.views import Index,Registro,LugarEventoCrear,VerLugar,EdicionLugar,EdtitarLugar,EliminarLugar
+from formulario_sena.views import Index,Registro,LugarEventoCrear,VerLugar,EdicionLugar,EdtitarLugar,EliminarLugar,VerFormulario,EdicionFormulario,EdtitarFormulario
+from formulario_sena.views import EliminarFormulario
 from . import views
 
 app_name = 'formulario_sena'
@@ -38,5 +39,14 @@ urlpatterns = [
     #EditarLugar
     path('EditarLugar/', EdtitarLugar, name='EditarLugar'),
     #Elimnar Lugar
-    path('ElimnarLugar/<int:Id_Lugar>/', EliminarLugar, name='EliminarLugar')
+    path('ElimnarLugar/<int:Id_Lugar>/', EliminarLugar, name='EliminarLugar'),
+    #Ver Formulario
+    path('VerFormulario/', VerFormulario, name='VerFormulario'),
+    #Edicion Formulario
+    path('EdicionFormulario/<int:Id_Formulario>/', EdicionFormulario, name='EdicionFormulario'),
+    #Editar Formulario
+    path('EditarFormulario/', EdtitarFormulario, name='EdtitarFormulario'),
+    #Eliminar Formulario
+    path('EliminarFormulario/<int:Id_Formulario>/', EliminarFormulario, name='EliminarFormulario')
+    
 ]

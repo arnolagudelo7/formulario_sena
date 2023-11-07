@@ -1,0 +1,60 @@
+{% include 'inc/Header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registros de asistencia</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="Buscador" id="">
+        <button type="submit">Buscar</button>
+    </form>
+
+
+    <table border="1">
+        <tr>
+            {% if formulario %}
+            <th>N°</th>
+            <th>Nombres competos</th>
+            <th>Numeros de documento</th>
+            <th>Planta | Contratistas | otro</th>
+            <th>Dependencia</th>
+            <th>Correos electronicos</th>
+            <th>Telefono | Ext.Sena</th>
+            <th>Autorizacion de grabacion</th>         
+            <th>Lugar del evento</th>
+            <th>Fecha y hora</th>
+            <th>Actualizar</th>
+            <th>Borrar</th>        
+            {% else %}
+            <th colspan="10">No hay registros</th>
+            {% endif %}
+        </tr>
+        {% for F in formulario %}
+        <tr>
+            <td>{{ F.Id_Formulario }}</td>
+            <td>{{ F.NombreCompleto }}</td>
+            <td>{{ F.NumeroDocumento }}</td>
+            <td>{{ F.Planta }}</td>
+            <td>{{ F.Dependencia }}</td>
+            <td>{{ F.Correo }}</td> 
+            <td>{{ F.Telefono }}</td>
+            <td>{{ F.Autorizacion }}</td>
+            <td>{{ F.LugarEvento_Id.LugarEvento }}</td>
+            <td>{{ F.FechaCreacion }}</td>
+            <td><a href="{% url 'EdicionFormulario' F.Id_Formulario %}">Actualizar</a></td>
+            <td><a href="{% url 'EliminarFormulario' F.Id_Formulario %}">Eliminar</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="10">No hay registros de asistencia.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

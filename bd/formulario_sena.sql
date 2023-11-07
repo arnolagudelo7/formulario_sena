@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 21:14:33
+-- Tiempo de generación: 07-11-2023 a las 22:30:38
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -106,6 +106,14 @@ CREATE TABLE `auth_user` (
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$600000$pLr8YaIVCfWG3RjMDfxpRe$yEwNjdeXCfZvNbzCO5i76b52YfkBpm+XY7FsR4gtvOU=', '2023-11-07 21:28:41.207105', 1, 'admin', '', '', 'arnol5417@gmail.com', 1, 1, '2023-11-01 16:36:42.846492'),
+(2, 'pbkdf2_sha256$600000$7vbCHG8HOHNZZkbDWaK02I$LuqQjqldVfsLNcefjMh459NPb+kVKpWa+8BQCCcvlc0=', '2023-11-07 21:28:26.702359', 0, 'arnol', '', '', '', 0, 1, '2023-11-02 18:45:32.106580');
 
 -- --------------------------------------------------------
 
@@ -222,6 +230,68 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('0fk7l3yskzlsuey0dqkt98dg1kixbj9e', 'e30:1qychB:ZfYlP6qpssxyJjYJqqfw7YeRienIkPk_M3VgIJTLfog', '2023-11-16 18:45:33.261584'),
+('4dtyzf9q97w7clmd3evwxswpeg76kp4w', 'e30:1qyb9I:JUATwkDm26vkVDlI_HG8b3rBmzYiIHlKFz23tB1VV5Y', '2023-11-16 17:06:28.824595'),
+('mst3zb739lokj4lkg6h8ptsug6i1potr', '.eJxVjDsOwjAQBe_iGln-rR1T0nMGa9fr4ABypDipEHeHSCmgfTPzXiLhtta09bKkicVZaHH63Qjzo7Qd8B3bbZZ5busykdwVedAurzOX5-Vw_w4q9vqtM1gYHWAumZTjQmyK9WoIWQdPA6OCMII2OhjCGMFG5zSysdYjKAPi_QHvtjdf:1r0Tcn:34KWkNFUu0nNYkXejqEfLDIRlvrgBy-y7-eeMianavM', '2023-11-21 21:28:41.230230'),
+('t443yi0s4zj4xvnu5s8tkwyntxgw8jic', 'e30:1qybA8:9Ejj4jm7kOzaqSIMYKSHuYTjfWsJn9wu3UTOtK6xCSs', '2023-11-16 17:07:20.769833');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_formulario`
+--
+
+CREATE TABLE `tbl_formulario` (
+  `Id_Formulario` int(11) NOT NULL,
+  `NombreCompleto` varchar(100) NOT NULL,
+  `NumeroDocumento` varchar(20) NOT NULL,
+  `Planta` varchar(100) NOT NULL,
+  `Dependencia` varchar(100) NOT NULL,
+  `Correo` varchar(100) NOT NULL,
+  `Telefono` varchar(20) NOT NULL,
+  `Autorizacion` varchar(10) NOT NULL,
+  `LugarEvento_Id` int(11) NOT NULL,
+  `FechaCreacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_formulario`
+--
+
+INSERT INTO `tbl_formulario` (`Id_Formulario`, `NombreCompleto`, `NumeroDocumento`, `Planta`, `Dependencia`, `Correo`, `Telefono`, `Autorizacion`, `LugarEvento_Id`, `FechaCreacion`) VALUES
+(7, 'arnol', '1033487369', 'Aprendiz', 'Sena Ust', 'arnol@gmail.com', '3046389781', 'Si', 1, '2023-11-08 01:50:16'),
+(8, 'Arango', '123456789', 'Aprendiz', 'sdafasf', 'Arngo@gmail.com', '321654987', 'Si', 2, '2023-11-08 01:51:00'),
+(9, 'jose', '741852963', 'Aprendiz', 'fdasfas', 'jose@gmail.com', '963852741', 'Si', 4, '2023-11-08 01:51:56'),
+(10, 'aasda', 'asdfasfas', 'Aprendiz', 'dasfaf', 'asdfasdf', 'asdfasf', 'Si', 1, '2023-11-08 02:13:19'),
+(11, 'sdfasdfaa', 'fasdf', 'planta', 'asdfas', 'dsafas', 'dsfas', 'No', 1, '2023-11-08 02:26:54');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_lugar`
+--
+
+CREATE TABLE `tbl_lugar` (
+  `Id_Lugar` int(11) NOT NULL,
+  `LugarEvento` varchar(100) NOT NULL,
+  `FechaCreacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_lugar`
+--
+
+INSERT INTO `tbl_lugar` (`Id_Lugar`, `LugarEvento`, `FechaCreacion`) VALUES
+(1, 'Patio', '2023-11-07 14:54:39'),
+(2, 'salon', '2023-11-07 14:55:06'),
+(3, 'jose', '2023-11-07 15:57:40'),
+(4, 'hol', '2023-11-07 17:14:13');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -299,6 +369,19 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indices de la tabla `tbl_formulario`
+--
+ALTER TABLE `tbl_formulario`
+  ADD PRIMARY KEY (`Id_Formulario`),
+  ADD KEY `LugarEvento_Id` (`LugarEvento_Id`);
+
+--
+-- Indices de la tabla `tbl_lugar`
+--
+ALTER TABLE `tbl_lugar`
+  ADD PRIMARY KEY (`Id_Lugar`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -324,7 +407,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT de la tabla `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_user_groups`
@@ -355,6 +438,18 @@ ALTER TABLE `django_content_type`
 --
 ALTER TABLE `django_migrations`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_formulario`
+--
+ALTER TABLE `tbl_formulario`
+  MODIFY `Id_Formulario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_lugar`
+--
+ALTER TABLE `tbl_lugar`
+  MODIFY `Id_Lugar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -393,6 +488,12 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Filtros para la tabla `tbl_formulario`
+--
+ALTER TABLE `tbl_formulario`
+  ADD CONSTRAINT `tbl_formulario_ibfk_1` FOREIGN KEY (`LugarEvento_Id`) REFERENCES `tbl_lugar` (`Id_Lugar`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
